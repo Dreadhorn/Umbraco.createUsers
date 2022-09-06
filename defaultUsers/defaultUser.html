@@ -1,0 +1,90 @@
+﻿<div ng-controller="Toolbox.DefaultUserController as vm" class="clearfix">
+
+    <div ng-if="vm.usersViewState === 'createDefaultUser'">
+        <div class="flex justify-center">
+            <umb-box style="max-width: 600px;">
+                <umb-box-content>
+                    <form name="addUserForm" no-validate val-form-manager class="block-form">
+                        <div>
+                            <div>
+                                <h3 class="bold" style="margin-bottom: 0;">
+                                    <localize key="defaultUser_createDefaultUser">Create default user</localize>
+                                </h3>
+                                <p style="line-height: 1.6em; margin-bottom: 15px;">
+                                    <localize key="defaultUser_createDefaultUserHelp">Create default users to give them access to Umbraco. This is only usable with the Azure AD login.</localize>
+                                </p>
+
+                                <ul ng-repeat="user in vm.page.defaultUsers track by user.email">
+                                    <li>{{user.name | umbWordLimit:2}} -- {{user.email}}</li>
+                                </ul>
+
+                            </div>
+                        </div>
+
+                        <umb-button button-style="action"
+                                    state="vm.page.createButtonState"
+                                    type="button"
+                                    action="vm.createDefaultUser()"
+                                    label-key="defaultUser_createDefaultUser"
+                                    size="m">
+                        </umb-button>
+
+                    </form>
+                </umb-box-content>
+            </umb-box>
+        </div>
+    </div>
+
+
+    <!-- Create default user success -->
+    <div ng-if="vm.usersViewState === 'createDefaultUserResult'">
+        <div class="flex justify-center">
+
+            <umb-box style="max-width: 500px;">
+                <umb-box-content>
+
+                    <!-- Success text -->
+                    <div class="flex items-center flex-column" style="margin-bottom: 15px;" id="sucessTextDiv">
+                        <div ng-if="vm.page.createDefaultUserSucess.length > 0">
+                            <div class="flex items-center" ng-repeat="sucess in vm.page.createDefaultUserSucess track by sucess.key">
+                                <umb-checkmark checked="vm.usersViewState === 'createDefaultUserResult'"
+                                               size="m">
+                                </umb-checkmark>
+                                <h3 class="bold" style="margin: 0 0 0 10px;">
+                                    {{sucess.name | umbWordLimit:1}}
+                                    <localize key="defaultUser_userCreated">has been created</localize>
+                                </h3>
+                            </div>
+                        </div>
+                            
+                        <div ng-if="vm.page.createDefaultUserError.length > 0">
+                            <div ng-repeat="error in vm.page.createDefaultUserError track by error.email">
+                                <h3 class="bold" style="margin: 0 0 0 10px;">
+                                    {{error.name | umbWordLimit:1}}
+                                    <localize key="defaultUser_userFailed">has failed</localize>
+                                </h3>
+                                    
+                            </div>
+                        </div>
+                    </div>
+
+                    <p style="line-height: 1.6em; margin-bottom: 20px;"><localize key="defaultUser_createdSuccessHelp">The new user has successfully been created. To log in to Umbraco use the password below.</localize></p>
+                    <p style="line-height: 1.6em; margin-bottom: 20px;"><localize key="defaultUser_createdErrorHelp">More information about the failed users in the console.log</localize></p>
+
+                    <!-- actions -->
+                    <div>
+                        <umb-button type="button" button-style="info"
+                                    label-key="user_createAnotherUser"
+                                    action="vm.createAnotherUser();"
+                                    size="m">
+                        </umb-button>
+                    </div>
+
+                </umb-box-content>
+            </umb-box>
+
+        </div>
+    </div>
+
+
+</div>

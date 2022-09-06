@@ -1,0 +1,16 @@
+﻿{
+  "dashboards": [
+    {
+      "alias": "defaultUsers",
+      "view": "/App_Plugins/DefaultUsers/defaultUser.html",
+      "sections": [ "settings" ],
+      "weight": 15,
+      "access": [ { "grant": "admin" } ]
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/DefaultUsers/defaultUser.controller.js"
+  ]
+}
+
+

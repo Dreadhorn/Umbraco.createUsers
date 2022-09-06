@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<language>
+  <area alias="defaultUser">
+    <key alias="defaultUsers">Default Users</key>
+    <key alias="createDefaultUser">Create all users</key>
+    <key alias="createDefaultUserHelp">Create the following users to give them access to Umbraco.</key>
+    <key alias="createdSuccessHelp">The password for the users can be seen in the profile. The password isn't required with the Azure AD login.</key>
+    <key alias="createdErrorHelp">More information about the failed users in the console.log</key>
+  </area>
+</language>
